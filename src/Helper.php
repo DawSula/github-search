@@ -11,7 +11,7 @@ class Helper
 
     public function filterData($param):array
     {
-        $ch = require __DIR__. "\init_curl.php";
+        $ch = require __DIR__ . "\..\init_curl.php";
         curl_setopt($ch, CURLOPT_URL,"https://api.github.com/orgs/{$param}/repos");
         $response = curl_exec($ch);
         curl_close($ch);
@@ -30,7 +30,7 @@ class Helper
             $newData[$i]['fork'] = $value['fork'];
 
             //Count and add contributors to data array
-            $ch = require __DIR__. "\init_curl.php";
+            $ch = require __DIR__ . "\..\init_curl.php";
             curl_setopt($ch, CURLOPT_URL,$value['contributors_url']);
             $response = curl_exec($ch);
             curl_close($ch);
@@ -44,7 +44,7 @@ class Helper
 
             //Check if its fork, and add to array data original url
             if ($value['fork']){
-                $ch = require __DIR__. "\init_curl.php";
+                $ch = require __DIR__ . "\..\init_curl.php";
                 curl_setopt($ch, CURLOPT_URL,$value['url']);
                 $response = curl_exec($ch);
                 curl_close($ch);
