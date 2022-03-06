@@ -1,0 +1,16 @@
+{% if _get.before is not empty %}
+
+
+<div class="text-center">
+    {% if _get.before == 'notFound' %}
+    <div class="alert alert-primary" role="alert">
+        Brak repozytoriów o podanej nazwie
+    </div>
+    {% elseif _get.before == 'dataError' %}
+    <div class="alert alert-primary" role="alert">
+        Podano błędne dane
+    </div>
+    {% endif %}
+
+</div>
+{% endif %}

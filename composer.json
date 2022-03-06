@@ -1,0 +1,20 @@
+{
+    "name": "zadanie/github-api",
+    "description": "zadanie wyswietlajace repozytoria",
+    "autoload": {
+        "psr-4": {
+            "App\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "DawSula",
+            "email": "sula.daw@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "3.0",
+        "ext-curl": "*",
+        "ext-json": "*"
+    }
+}
