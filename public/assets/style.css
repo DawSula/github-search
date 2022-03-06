@@ -1,0 +1,7 @@
+.table-sortable th{
+    cursor: pointer;
+}
+
+.table-sortable th:hover{
+    opacity: 0.7;
+}

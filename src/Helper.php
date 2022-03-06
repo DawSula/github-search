@@ -7,8 +7,6 @@ namespace App\src;
 class Helper
 {
 
-
-
     public function filterData($param):array
     {
         $ch = require __DIR__ . "\..\init_curl.php";
@@ -37,9 +35,13 @@ class Helper
             $contr = json_decode($response, true);
 
             if (is_array($contr)){
-                $newData[$i]['contributors'] = count($contr);
+                $nr = count($contr);
+                if ($nr<10){
+                    $nr = '0'.$nr;
+                }
+                $newData[$i]['contributors'] = $nr;
             }else{
-                $newData[$i]['contributors'] = 0;
+                $newData[$i]['contributors'] = '00';
             }
 
             //Check if its fork, and add to array data original url
@@ -58,37 +60,36 @@ class Helper
         return $newData;
     }
 
-
-    public function sortData(array $data, string $sort):array
-    {
-        if ($sort === 'nameAsc'){
-            usort($data, function ($item1, $item2) {
-                return $item1['name'] <=> $item2['name'];
-            });
-        }else if ($sort === 'nameDesc'){
-            usort($data, function ($item1, $item2) {
-                return $item2['name'] <=> $item1['name'];
-            });
-        }else if ($sort === 'contrAsc'){
-            usort($data, function ($item1, $item2) {
-                return $item1['contributors'] <=> $item2['contributors'];
-            });
-        }else {
-            usort($data, function ($item1, $item2) {
-                return $item2['contributors'] <=> $item1['contributors'];
-            });
-        }
-        return $data;
-    }
+//    public function sortData(array $data, string $sort):array
+//    {
+//        if ($sort === 'nameAsc'){
+//            usort($data, function ($item1, $item2) {
+//                return $item1['name'] <=> $item2['name'];
+//            });
+//        }else if ($sort === 'nameDesc'){
+//            usort($data, function ($item1, $item2) {
+//                return $item2['name'] <=> $item1['name'];
+//            });
+//        }else if ($sort === 'contrAsc'){
+//            usort($data, function ($item1, $item2) {
+//                return $item1['contributors'] <=> $item2['contributors'];
+//            });
+//        }else {
+//            usort($data, function ($item1, $item2) {
+//                return $item2['contributors'] <=> $item1['contributors'];
+//            });
+//        }
+//        return $data;
+//    }
 
     public function validateData(array $params):bool
     {
         if ($params['github'] === ""){
             return false;
         }
-        if (!($params['sort'] === 'nameAsc' || $params['sort'] === 'nameDesc' || $params['sort'] === 'contrAsc' || $params['sort'] === 'contrDesc')){
-            return false;
-        }
+//        if (!($params['sort'] === 'nameAsc' || $params['sort'] === 'nameDesc' || $params['sort'] === 'contrAsc' || $params['sort'] === 'contrDesc')){
+//            return false;
+//        }
 
         return true;
     }

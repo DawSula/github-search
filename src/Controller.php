@@ -42,13 +42,13 @@ class Controller
                 if (!($this->helper->validateData($this->request->getParams()))){
                     $this->redirect('/',['before'=>'dataError']);
                 };
-                $sort = $this->request->getParams()['sort'];
+//                $sort = $this->request->getParams()['sort'];
                 $param = $this->request->getParams()['github'];
                 $data = $this->helper->filterData($param);
                 if (empty($data)){
                     $this->redirect('/',['before'=>'notFound']);
                 }
-                $data = $this->helper->sortData($data, $sort);
+//                $data = $this->helper->sortData($data, $sort);
                 $this->twig->addGlobal('_get', $_GET);
                 echo $this->twig->render('list.html', ['data'=>$data]);
                 break;

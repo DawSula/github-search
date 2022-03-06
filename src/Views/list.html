@@ -10,41 +10,40 @@
         <input type="text" value="{{_get.github}}" name="github"  class="form-control" id="searchGit" aria-describedby="emailHelp">
     </div>
 
-    <div class="form-check">
-        <div class="mb-2">Sortowanie: </div>
-        <input class="form-check-input" type="radio" name="sort" value="nameAsc" id="flexRadioDefault1" {% if _get.sort == 'nameAsc' %}  checked {% endif %}>
-        <label class="form-check-label" for="flexRadioDefault1">
-            Nazwa: Rosnąco
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="sort" value="nameDesc" id="flexRadioDefault2" {% if _get.sort == 'nameDesc' %}  checked {% endif %}>
-        <label class="form-check-label" for="flexRadioDefault2">
-            Nazwa: Malejąco
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="sort" value="contrAsc" id="flexRadioDefault3" {% if _get.sort == 'contrAsc' %}  checked {% endif %}>
-        <label class="form-check-label" for="flexRadioDefault3">
-            Kontrybutorzy: Rosnąco
-        </label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="sort" value="contrDesc" id="flexRadioDefault4" {% if _get.sort == 'contrDesc' %}  checked {% endif %}>
-        <label class="form-check-label" for="flexRadioDefault4">
-            Kontrybutorzy: Malejąco
-        </label>
-    </div>
+<!--    <div class="form-check">-->
+<!--        <div class="mb-2">Sortowanie: </div>-->
+<!--        <input class="form-check-input" type="radio" name="sort" value="nameAsc" id="flexRadioDefault1" {% if _get.sort == 'nameAsc' %}  checked {% endif %}>-->
+<!--        <label class="form-check-label" for="flexRadioDefault1">-->
+<!--            Nazwa: Rosnąco-->
+<!--        </label>-->
+<!--    </div>-->
+<!--    <div class="form-check">-->
+<!--        <input class="form-check-input" type="radio" name="sort" value="nameDesc" id="flexRadioDefault2" {% if _get.sort == 'nameDesc' %}  checked {% endif %}>-->
+<!--        <label class="form-check-label" for="flexRadioDefault2">-->
+<!--            Nazwa: Malejąco-->
+<!--        </label>-->
+<!--    </div>-->
+<!--    <div class="form-check">-->
+<!--        <input class="form-check-input" type="radio" name="sort" value="contrAsc" id="flexRadioDefault3" {% if _get.sort == 'contrAsc' %}  checked {% endif %}>-->
+<!--        <label class="form-check-label" for="flexRadioDefault3">-->
+<!--            Kontrybutorzy: Rosnąco-->
+<!--        </label>-->
+<!--    </div>-->
+<!--    <div class="form-check">-->
+<!--        <input class="form-check-input" type="radio" name="sort" value="contrDesc" id="flexRadioDefault4" {% if _get.sort == 'contrDesc' %}  checked {% endif %}>-->
+<!--        <label class="form-check-label" for="flexRadioDefault4">-->
+<!--            Kontrybutorzy: Malejąco-->
+<!--        </label>-->
+<!--    </div>-->
 
     <button type="submit" class="btn btn-primary mt-4">Pokaż repozytoria</button>
 </form>
 
 
 
-<table class="table mt-5">
+<table class="table mt-5 table-sortable">
     <thead>
     <tr>
-        <th scope="col">#</th>
         <th scope="col">Nazwa repozytorium</th>
         <th scope="col">Fork</th>
         <th scope="col">Liczba kontrybutorów</th>
@@ -53,7 +52,6 @@
     <tbody>
     {% for el in data %}
     <tr>
-        <th scope="row">{{loop.index}}</th>
         <td> <a href="{{el.url}}">{{el.name}}</a></td>
         <td>
             {% if el.fork %}
